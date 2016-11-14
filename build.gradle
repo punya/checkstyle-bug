@@ -1,0 +1,25 @@
+apply plugin: 'idea'
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'checkstyle'
+  apply plugin: 'idea'
+
+  repositories {
+    jcenter()
+  }
+
+  checkstyle{
+    toolVersion = '7.2'
+    configFile rootProject.file('minimal.xml')
+  }
+
+//  tasks.checkstyleMain.classpath += configurations.compileClasspath
+//  tasks.checkstyleTest.classpath += configurations.testCompileClasspath
+}
+
+project('client') {
+  dependencies {
+    compile project(':api')
+  }
+}
